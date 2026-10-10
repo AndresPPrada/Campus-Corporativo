@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel administrativo del Campus Corporativo MINEX">
+  <title>Administración | Campus MINEX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-page">
+  <header class="topbar">
+    <a href="index.html" class="brand"><span class="brand-mark">MIN<span>EX</span></span><span class="brand-text"><strong>Campus</strong><small>Corporativo</small></span></a>
+    <div class="admin-heading"><span>ADMINISTRACIÓN</span><strong>Gestión de aprendizaje</strong></div>
+    <a class="back-link" href="index.html">← Volver al campus</a><a class="back-link admin-logout" data-auth-control href="login.html">Cerrar sesión</a>
+  </header>
+
+  <main class="admin-shell">
+    <section class="admin-intro">
+      <div><span class="kicker blue">CENTRO DE CONTENIDOS</span><h1>Construye nuevas rutas de aprendizaje.</h1><p>Crea cursos, organiza sus módulos y agrega videos enlazados o archivos para que aparezcan en el catálogo.</p></div>
+      <div class="admin-stat"><strong id="course-count">0</strong><span>cursos creados</span></div>
+    </section>
+
+    <div class="admin-layout">
+      <section class="admin-form-card">
+        <div class="form-heading"><div><span class="section-kicker">NUEVO CURSO</span><h2 id="form-title">Información principal</h2></div><span class="required-note">* Campos obligatorios</span></div>
+        <form id="course-form">
+          <div class="form-grid">
+            <label class="field field-wide">Ruta existente *<select name="routeId" required><option value="" disabled selected>Selecciona una de las 3 rutas</option><option value="induccion">Inducción Corporativa · curso único</option><option value="capacitaciones">Capacitaciones MINEX · varios cursos</option><option value="desarrollo">Plan de Desarrollo 2026 · varios cursos</option></select><small id="route-help">Inducción es un curso único, organizado en módulos por área.</small></label>
+            <label class="field field-wide">Título del curso *<input name="title" required maxlength="80" placeholder="Ej. Seguridad para trabajo en altura"></label>
+            <label class="field">Categoría<select name="category" id="course-category"><option>Inducción</option><option>Inducción Corporativa</option><option>Seguridad y salud</option><option>Sostenibilidad</option><option>Plan de desarrollo</option><option>Talento humano</option><option>Capacitaciones</option><option>Tecnologías de la información</option><option>Recursos</option></select></label>
+            <label class="field">Estado del curso<select name="status"><option value="published">Publicado</option><option value="draft">Borrador</option></select></label>
+            <label class="field">Duración estimada<input name="duration" required maxlength="30" placeholder="Ej. 2h 30m"></label>
+            <label class="field">Nivel<select name="level"><option>Inicial</option><option>Intermedio</option><option>Avanzado</option></select></label>
+            <label class="field field-wide">Descripción *<textarea name="description" required maxlength="1200" rows="6" placeholder="Cuenta qué aprenderá el colaborador en esta ruta."></textarea><small>Hasta 1.200 caracteres.</small></label>
+            <label class="field field-wide">Enlace al formulario o evaluación<input name="assessmentUrl" type="url" maxlength="500" placeholder="https://..." ><small>Opcional. Se abrirá dentro del aula del curso.</small></label>
+          </div>
+
+          <div class="form-divider"></div>
+          <div class="form-heading"><div><span class="section-kicker">CONTENIDO</span><h2>Módulos y videos</h2></div><button class="outline-button" type="button" id="add-module">+ Agregar módulo</button></div>
+          <p class="helper-text">Cada módulo puede tener un video desde YouTube, Vimeo o una URL corporativa, o un archivo seleccionado desde tu equipo.</p>
+          <div id="module-list" class="admin-module-list"></div>
+          <div class="form-actions"><a href="index.html" class="cancel-button">Salir</a><button class="outline-button" id="cancel-edit" type="button" hidden>Cancelar edición</button><button class="button button-blue" id="submit-course" type="submit">Publicar en el catálogo <span>→</span></button></div>
+        </form>
+      </section>
+
+      <aside class="admin-sidebar">
+        <div class="admin-side-card category-manager"><span class="section-kicker">ORGANIZACIÓN</span><h3>Categorías de la ruta</h3><p>Las categorías aparecen dentro de Capacitaciones MINEX.</p><form id="category-form"><label class="field">Nombre *<input name="name" maxlength="60" required placeholder="Ej. Gestión ambiental"></label><label class="field">Descripción<textarea name="description" maxlength="240" rows="3" placeholder="Describe esta categoría"></textarea></label><button class="outline-button" type="submit">+ Crear categoría</button></form><div id="saved-categories" class="saved-categories"></div></div>
+        <div class="admin-side-card local-user-manager"><span class="section-kicker">ACCESO PROVISIONAL</span><h3>Cuentas locales</h3><p>Usuarios de prueba para este servidor de desarrollo.</p><form id="local-user-form"><label class="field">Correo corporativo *<input name="email" type="email" maxlength="254" autocomplete="off" required placeholder="persona@minex.com"></label><label class="field">Contrase&#241;a temporal *<input name="password" type="password" minlength="12" maxlength="128" autocomplete="new-password" required placeholder="M&#237;nimo 12 caracteres"></label><button class="outline-button" type="submit">+ Crear cuenta</button></form><div id="local-user-list" class="saved-categories"></div><small class="local-user-note">Las contrase&#241;as se guardan como hash en el servidor local.</small></div>
+        <div class="admin-side-card"><span class="section-kicker">MIGRAR CONTENIDO</span><h3>Transferir datos del campus</h3><p>Exporta cursos, categorías, avances, comentarios y videos de este origen para importarlos en otro.</p><button class="outline-button" id="export-campus-data" type="button">Descargar copia de datos</button><label class="field transfer-import-label">Importar copia<input id="import-campus-data" type="file" accept="application/json,.json"></label><small class="local-user-note">Importar reemplaza los datos que tengan la misma clave en este navegador.</small></div>
+        <div class="admin-side-card"><span class="side-icon">✦</span><h3>Publicación inmediata</h3><p>Al publicar, el curso aparecerá automáticamente en la sección de rutas destacadas del catálogo.</p><div class="side-line"><span>Estado</span><b><i></i> Borrador local</b></div></div>
+        <div class="admin-side-card"><span class="section-kicker">CURSOS CREADOS</span><div id="saved-courses" class="saved-courses"></div></div>
+        <div class="security-note"><strong>Para producción</strong><span>Este prototipo guarda datos en el navegador. El panel real debe conectarse a autenticación, roles y almacenamiento seguro.</span></div>
+      </aside>
+    </div>
+  </main>
+  <div class="toast" role="status"></div>
+  <script src="js/admin.js"></script>
+  <script src="js/course-management.js"></script>
+  <script src="js/data-transfer.js"></script>
+  <script src="js/auth-ui.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

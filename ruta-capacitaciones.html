@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Categor&#237;as de aprendizaje de Capacitaciones MINEX.">
+  <title>Capacitaciones MINEX | Campus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/ruta.css">
+</head>
+<body class="route-page">
+  <header class="topbar"><a href="index.html" class="brand"><span class="brand-mark">MIN<span>EX</span></span><span class="brand-text"><strong>Campus</strong><small>Corporativo</small></span></a><a class="back-link" href="index.html#rutas">&larr; Volver a rutas</a></header>
+  <main class="route-shell">
+    <section class="route-hero" aria-labelledby="route-title"><div class="route-hero-copy"><span class="route-eyebrow"><i></i> RUTA 02 <b>CAPACITACIONES MINEX</b></span><h1 id="route-title">Conocimiento<br>que <em>impulsa</em></h1><p>Explora las categor&#237;as y encuentra cursos para fortalecer tus competencias.</p><div class="route-hero-actions"><a class="button button-light" href="#route-categories">Explorar categor&#237;as <span>&darr;</span></a><span class="route-note"><i></i> Tu pr&#243;ximo aprendizaje comienza aqu&#237;</span></div><div class="route-hero-stats"><div><strong id="category-total">08</strong><span>&#193;REAS DE APRENDIZAJE</span></div><i></i><div><strong id="course-total">00</strong><span>CURSOS DISPONIBLES</span></div><i></i><div><strong>MINEX</strong><span>CRECEMOS JUNTOS</span></div></div></div><div class="route-art" aria-hidden="true"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-star">&#10022;</div><div class="art-card"><small>MINEX <span>CAMPUS</span></small><b>Aprender<br>nos mueve.</b><i>02 / 08</i><div><span></span></div></div><span class="art-spark spark-one">&#10022;</span><span class="art-spark spark-two">&#10022;</span></div></section>
+    <section class="route-categories" id="route-categories"><div class="route-section-heading"><div><span class="kicker blue">&#193;REAS DE APRENDIZAJE</span><h2>Categor&#237;as</h2><p>Selecciona un &#225;rea para ver sus cursos.</p></div><label class="category-search"><span aria-hidden="true">&#9906;</span><input id="category-search" type="search" placeholder="Buscar una categor&#237;a" aria-label="Buscar categor&#237;as"></label></div><div class="category-results"><span id="category-result-count">08 categor&#237;as</span><span>Selecciona una tarjeta para descubrir sus cursos <b>&darr;</b></span></div><div id="category-grid" class="category-grid" aria-live="polite"></div></section>
+    <section id="category-courses" class="route-courses" hidden><div class="route-courses-header"><div class="route-courses-title"><span class="kicker blue">CONTENIDO DE LA CATEGOR&#205;A</span><h2 id="selected-category-title">Cursos</h2><p id="selected-category-description"></p></div><label class="category-search course-search"><span aria-hidden="true">&#9906;</span><input id="course-search" type="search" placeholder="Buscar cursos" aria-label="Buscar cursos en esta categor&#237;a"></label><label class="course-level-filter"><span>Nivel</span><select id="course-level"><option value="">Todos</option><option value="inicial">Inicial</option><option value="intermedio">Intermedio</option><option value="avanzado">Avanzado</option></select></label><button id="show-all-categories" class="link-button" type="button">Ver categor&#237;as</button></div><div class="course-results"><span id="course-result-count" aria-live="polite"></span><span>Resultados de esta categor&#237;a</span></div><div id="course-list" class="course-grid" aria-live="polite"></div></section>
+  </main>
+  <div class="toast" role="status"></div>
+  <script src="js/ruta.js"></script>
+</body>
+</html>
